@@ -5,9 +5,11 @@ export default function Tweets({tweets}){
 
     return (
         <>
+        <div className="container mx-auto">
         {tweets.map((tweet, index) => (
             <Tweet key={index} tweet={tweet}/>
         ))}
+        </div>
         </>
     )
 }
