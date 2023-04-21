@@ -8,9 +8,9 @@ export default function Tweet ({tweet}){
             <p className="float-right">
                 {timeago.format(new Date(tweet.createdAt))}
             </p>
-        
+            <small className="hover:text-blue-600">@{tweet.author.name}</small>
             <p>{tweet.content}</p>
-            <small className="hover:text-blue-600">{tweet.author.email}</small>
+            
         </div>
         
         </>
