@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth"
+import { getServerSession } from "next-auth/next"
 import { authOptions } from "./auth/[...nextauth]"
 import prisma from "@/lib/prisma"
 
@@ -22,6 +22,7 @@ export default async function handler(req, res){
        await prisma.tweet.create({
         data: {
             content: req.body.content,
+            parent: req.body.parent || null,
             author: {
                 connect: {id: user.id}
             },
@@ -32,6 +33,7 @@ export default async function handler(req, res){
     }
 
     if(req.method === 'DELETE'){
+       
         const id = req.body.id
         console.log(id)
 
@@ -49,8 +51,10 @@ export default async function handler(req, res){
         }
 
         await prisma.tweet.delete({
-            where: {id},
+            where: {id: id},
+            include: {author: true}
         })
+       
 
         res.status(200).end()
         return
