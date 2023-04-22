@@ -13,6 +13,10 @@ export default function SingleTweet({tweet, replies}){
         router.push('/home')
         return
     }
+
+    if(typeof window !== 'undefined' && tweet.parent){
+        router.push(`/${tweet.parent_data.author.name}/status/${tweet.parent}`)
+    }
     
     return (
         <>
