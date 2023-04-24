@@ -30,6 +30,7 @@ export default function NewTweet({tweets, setTweets}) {
           method: 'POST'
         })
         const tweet = await res.json()
+        setTweets([tweet, ...tweets])
         setContent('')
         // router.reload(window.location.pathname)
       }}
